@@ -13,32 +13,33 @@ import java.util.*;
 // then push the previous minimum followed by the new value. And when popping, pop the top of the stack and the next element below it if the
 // popped value is currently the minimum, then the lastly popped element will be the new minimum
 
+// Using one stack
 class MinStack {
-    Stack<Integer> st;
-
+    Stack<Integer> stack;
     int min;
-    public MinStack() {
-        this.st = new Stack<>();
-        this.min = Integer.MAX_VALUE;
 
+    public MinStack() {
+        this.min = Integer.MAX_VALUE;
+        this.stack = new Stack<>();
     }
 
     public void push(int val) {
         if(min>= val){
-            st.push(min);
+            stack.push(min);
             min = val;
         }
-        st.push(val);
+        stack.push(val);
     }
 
     public void pop() {
-        if(st.pop() == min){
-            min = st.pop();
+        if(stack.pop() == min){
+            min = stack.pop();
         }
+
     }
 
     public int top() {
-        return st.peek();
+        return stack.peek();
     }
 
     public int getMin() {
